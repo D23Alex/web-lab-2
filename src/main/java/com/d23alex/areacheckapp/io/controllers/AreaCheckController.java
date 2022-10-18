@@ -15,10 +15,12 @@ import com.d23alex.areacheckapp.logic.model.requests.AreaCheckRequestModel;
 import com.d23alex.areacheckapp.logic.model.requests.AreaCheckHistoryRequestModel;
 import com.d23alex.areacheckapp.logic.model.responses.AreaCheckResponseModel;
 import com.d23alex.areacheckapp.logic.model.responses.AreaCheckHistoryResponseModel;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.ws.rs.BadRequestException;
 
+import java.io.IOException;
 import java.util.Date;
 
 public class AreaCheckController implements CheckAreaController, MainFormAndHistoryController {
@@ -60,7 +62,13 @@ public class AreaCheckController implements CheckAreaController, MainFormAndHist
     }
 
     private void processInvalidAreaCheckRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-        //TODO: redirect user to a page that says "Sorry, bad request"
+        try {
+            httpServletRequest.getRequestDispatcher("/invalid-request.html").forward(httpServletRequest, httpServletResponse);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private AreaCheckRequestModel constructAreaCheckRequestModel(HttpServletRequest httpServletRequest) {

@@ -6,4 +6,22 @@
     <listener>
         <listener-class>com.d23alex.areacheckapp.io.web.Initializer</listener-class>
     </listener>
+
+    <servlet>
+        <servlet-name>ControllerServlet</servlet-name>
+        <servlet-class>com.d23alex.areacheckapp.io.web.servlets.ControllerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ControllerServlet</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AreaCheckServlet</servlet-name>
+        <servlet-class>com.d23alex.areacheckapp.io.web.servlets.AreaCheckServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MainPageServlet</servlet-name>
+        <servlet-class>com.d23alex.areacheckapp.io.web.servlets.MainPageServlet</servlet-class>
+    </servlet>
+
 </web-app>

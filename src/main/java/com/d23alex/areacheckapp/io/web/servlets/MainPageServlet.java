@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "MainFormAndHistory", value = "/main")
 public class MainPageServlet extends HttpServlet {
     private MainFormAndHistoryController controller;
 

@@ -55,6 +55,7 @@ public class MainFormAndHistoryPresenter implements Presenter {
         List<AreaCheckAttempt> checkAttempts = history.getAll();
         String formattedHistory = renderHistoryAsHTML(checkAttempts);
         viewModel.setFormattedHistory(formattedHistory);
+        viewModel.setXyrHistory(getHistoryAsString(checkAttempts));
     }
 
     private String renderHistoryAsHTML(List<AreaCheckAttempt> checkAttempts) {
@@ -68,7 +69,7 @@ public class MainFormAndHistoryPresenter implements Presenter {
     //TODO: does that belong to this class?
     private String areaCheckAttemptToHTML(AreaCheckAttempt attempt) {
         return "<div class='area-check-attempt'>" +
-                surroundWithDivBlockOfClass("point: " + attempt.getPoint().toString(), "point") +
+                surroundWithDivBlockOfClass("point: " + attempt.getPoint().toString(), "pointt") +
                 surroundWithDivBlockOfClass("r: " + attempt.getR() + "", "r") +
                 surroundWithDivBlockOfClass("result: " + (attempt.isAreaContainsPoint() ? "did contain" : "didn't contain"), "result") +
                 surroundWithDivBlockOfClass("date: " + attempt.getRequestDate().toString(), "request-date") +
@@ -78,5 +79,13 @@ public class MainFormAndHistoryPresenter implements Presenter {
 
     private String surroundWithDivBlockOfClass(String string, String divClassname) {
         return "<div class='" + divClassname + "'>" + string + "</div>";
+    }
+
+    private String getHistoryAsString(List<AreaCheckAttempt> checkAttempts) {
+        StringBuilder result = new StringBuilder();
+        result.append("'");
+        checkAttempts.forEach(attempt -> result.append(attempt.getPoint().getX() + " " + attempt.getPoint().getY() + " " + attempt.getR() + " "));
+        result.append("'");
+        return result.toString();
     }
 }

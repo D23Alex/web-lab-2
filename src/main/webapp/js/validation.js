@@ -47,7 +47,7 @@ function validateXInput() {
 
 function validateYInput() {
     var minYValue = -3;
-    var maxYValue = 3;
+    var maxYValue = 5;
 
     var yInput = document.forms["main-form"]["y"];
     if (yInput.value == null || yInput.value === "") {
@@ -74,7 +74,7 @@ function validateYInput() {
     }
 
     if (minYValue > parseFloat(yInput.value) || maxYValue < parseFloat(yInput.value)) {
-        return new ValidationResult(false, "the value of y is out of range");
+        return new ValidationResult(false, "the value of y is out of range - the range is [-3:5]");
     }
 
     return new ValidationResult(true, "OK");
@@ -119,4 +119,43 @@ function constructValidationDivs(xValidationResult, yValidationResult, rValidati
         rValidationDiv.classList.add("invalid")
     }
     rValidationDiv.title = VALIDATION_MESSAGES_PREFIX + rValidationResult._validationMessage;
+}
+
+
+
+var pointsRendered = 0;
+function renderAttempts(xyrString) {
+    pointsRendered = 0;
+    //renderPoint(1, 2, 3);
+
+    ///xyrString = "1 2 3";
+
+    let array = xyrString.split(" ");
+
+    for (let i = 0; i < array.length; i+=3) {
+        renderPoint(array[i], array[i+1], array[i+2]);
+        pointsRendered++
+    }
+}
+
+function renderPoint(x, y, r) {
+    let sizeInPx = 4;
+
+
+    let top = 150;
+    let left = 150;
+    top -= (y / (2 * r)) * 150;
+    left += (x / (2 * r)) * 150;
+
+    top -= pointsRendered * sizeInPx;
+
+    let topString = "top: " + top + "px; ";
+    let leftString = "left: " + left + "px; ";
+
+    let newDiv = document.createElement('div');
+    newDiv.classList.add("point");
+    newDiv.style = topString + leftString;
+
+    document.getElementById("points").append(newDiv);
+    //newDiv.setAttribute()
 }

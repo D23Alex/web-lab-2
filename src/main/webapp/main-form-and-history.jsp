@@ -30,16 +30,26 @@
         </div>
     </div>
 </header>
-<div id="area" style="width: 300px; height: 300px;">
+<div id="area" style="width: 300px; height: 300px; overflow: hidden;">
+    <div id="points" class="points"></div>
     <img src="xy-axis-lab2-width-and-height-ratio-to-2r-is-2.svg" style="width: inherit; height: inherit">
 </div>
-<form action="AreaCheckServlet" name="main-form" method="get" id="main-form" onsubmit="submitButtonPressed()">
+<form name="main-form" method="get" id="main-form" onsubmit="submitButtonPressed()">
     <div class="user-input" id="x-input">
         <div class="inputs">
             <p>X</p>
             <select class="x-select" id="x-select" name="x" value="0">
-                <option selected>1</option>
+                <option selected>-2</option>
+                <option>-1.5</option>
+                <option>-1</option>
+                <option>-0.5</option>
+                <option>0</option>
+                <option>0.5</option>
+                <option>1</option>
+                <option>1.5</option>
                 <option>2</option>
+
+
             </select>
 
         </div>
@@ -62,12 +72,16 @@
 
     <div class="user-input" id="r-input">
         <div class="inputs">
-            <p>R</p>
-            <input type="radio" id="r-equals-1-radio" name="r" value="1">
+            <p>R: </p>
+            1<input type="radio" id="r-equals-1-radio" name="r" value="1" checked>
             <br>
-            <input type="radio" id="r-equals-1.5-radio" name="r" value="1.5">
+            2<input type="radio" id="r-equals-2-radio" name="r" value="2">
             <br>
-            <input type="radio" id="r-equals-2-radio" name="r" value="2">
+            3<input type="radio" id="r-equals-3-radio" name="r" value="3">
+            <br>
+            4<input type="radio" id="r-equals-4-radio" name="r" value="4">
+            <br>
+            5<input type="radio" id="r-equals-5-radio" name="r" value="5">
             <br>
         </div>
         <div class="validation-result" id="r-validation-result">
@@ -85,11 +99,17 @@
 <%=viewModel.getFormattedHistory()%>
 <footer>
     <div class="footer-content">
-        <div class="footer-line">Aleksei Dormorezov, web programming lab 1.</div>
-        <div class="footer-line">No copyright. Free software. Source code available on <a href="https://www.github.com/d23alex/web-lab-1">GitHub.</a></div>
+        <div class="footer-line">Aleksei Dormorezov, web programming lab 2.</div>
+        <div class="footer-line">No copyright. Free software. Source code available on <a href="https://www.github.com/d23alex/web-lab-2">GitHub.</a></div>
     </div>
 </footer>
 </body>
 </html>
 <script type="text/javascript" src="js/event-listeners.js"></script>
 <script type="text/javascript" src="js/validation.js"></script>
+<script type="text/javascript">
+
+    renderAttempts(<%=viewModel.getXyrHistory()%>);
+
+
+</script>
